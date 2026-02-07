@@ -1,3 +1,6 @@
 spring:
   application:
     name: journalApp
+  data:
+    mongodb:
+      uri: mongodb://chirayu:Chirayu@localhost:27018/testdb?authSource=admin

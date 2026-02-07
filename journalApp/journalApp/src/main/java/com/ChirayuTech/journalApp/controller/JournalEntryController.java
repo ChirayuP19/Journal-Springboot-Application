@@ -1,6 +1,8 @@
 package com.ChirayuTech.journalApp.controller;
 
 import com.ChirayuTech.journalApp.entity.JournalEntry;
+import com.ChirayuTech.journalApp.service.JournalEntryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -12,36 +14,32 @@ import java.util.Map;
 @RequestMapping("/journal")
 public class JournalEntryController {
 
-    private Map<Long,JournalEntry> journalEntries =new HashMap<>();
+    @Autowired
+    private JournalEntryService journalEntryService;
 
     @GetMapping
     public List<JournalEntry> getAll(){
-     return new ArrayList<>(journalEntries.values());
+       return null;
     }
 
     @PostMapping
     public boolean createEntry(@RequestBody JournalEntry myEntry){
-        journalEntries.put(myEntry.getId(),myEntry);
+        journalEntryService.saveEntry(myEntry);
         return true;
     }
 
     @GetMapping("/id/{myid}")
     public JournalEntry getJournalEntryById(@PathVariable Long myid ){
-       return journalEntries.get(myid);
+        return null;
     }
 
     @DeleteMapping("/id/{id}")
     public JournalEntry deleteJournalEntryById(@PathVariable Long id){
-        return journalEntries.remove(id);
+        return null;
     }
 
     @PutMapping("id/{id}")
     public JournalEntry updateJournalEntryById(@PathVariable Long id,@RequestBody JournalEntry entry){
-        if(journalEntries.containsKey(id)){
-           journalEntries.put(id,entry);
-        }else {
-            throw new RuntimeException("id not valid ");
-        }
-        return journalEntries.get(entry);
-    }
+        return null;
+}
 }
