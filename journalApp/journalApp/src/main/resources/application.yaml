@@ -4,3 +4,4 @@ spring:
   data:
     mongodb:
       uri: mongodb://chirayu:Chirayu@localhost:27018/testdb?authSource=admin
+      auto-index-creation: true
