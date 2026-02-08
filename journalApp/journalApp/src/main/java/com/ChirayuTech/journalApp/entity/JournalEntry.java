@@ -2,6 +2,7 @@ package com.ChirayuTech.journalApp.entity;
 
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Data
 @Document
+@NoArgsConstructor
 
 public class JournalEntry {
 
