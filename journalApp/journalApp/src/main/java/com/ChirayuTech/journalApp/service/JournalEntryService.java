@@ -14,8 +14,8 @@ public class JournalEntryService {
     @Autowired
     private JournalEntryRepo journalEntryRepo;
 
-    public void saveEntry(JournalEntry journalEntry){
-        journalEntryRepo.save(journalEntry);
+    public JournalEntry saveEntry(JournalEntry journalEntry){
+        return journalEntryRepo.save(journalEntry);
     }
 
     public List<JournalEntry> getAll(){
