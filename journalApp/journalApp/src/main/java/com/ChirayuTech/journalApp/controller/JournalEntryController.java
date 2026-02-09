@@ -67,12 +67,15 @@ public class JournalEntryController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping("/id/{username}/{id}")
-    public ResponseEntity<?> deleteJournalEntryById(@PathVariable ObjectId id,@PathVariable String username){
+    @DeleteMapping("/id/{id}")
+    public ResponseEntity<?> deleteJournalEntryById(@PathVariable ObjectId id){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
         journalEntryService.deleteById(id,username);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 
     @PutMapping("id/{username}/{id}")
     public ResponseEntity<JournalEntry> updateJournalEntryById(@PathVariable ObjectId id,
