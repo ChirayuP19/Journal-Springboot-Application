@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,30 +19,21 @@ public class UserController {
     @Autowired
     public UserService userService;
 
-    @PostMapping("")
-    public ResponseEntity<?> createUser(@RequestBody User user){
-        try {
-            User entry = userService.saveEntry(user);
-            return new ResponseEntity<>(entry, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
-//    @GetMapping("") Only can Access By Admin.
-//    public ResponseEntity<List<User>> getAllUsers(){
-//        List<User> users = userService.getAll();
-//        if(users !=null && !users.isEmpty()){
-//            return new ResponseEntity<>(users,HttpStatus.OK);
-//        }else
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    @PostMapping("")
+//    public ResponseEntity<?> createUser(@RequestBody User user){
+//        try {
+//            User entry = userService.saveEntry(user);
+//            return new ResponseEntity<>(entry, HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
 //    }
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable ObjectId id){
-        Optional<User> user = userService.findById(id);
-        return user.map(user1 -> new ResponseEntity<>(user1, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+//    @GetMapping("/id/{id}")
+//    public ResponseEntity<User> getUserById(@PathVariable ObjectId id){
+//        Optional<User> user = userService.findById(id);
+//        return user.map(user1 -> new ResponseEntity<>(user1, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
 
 
     @PutMapping("")
@@ -54,7 +43,7 @@ public class UserController {
         User userName = userService.findByUserName(name);
         userName.setUsername(user.getUsername());
         userName.setPassword(user.getPassword());
-        userService.saveEntry(userName);
+        userService.saveNewEntry(userName);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
