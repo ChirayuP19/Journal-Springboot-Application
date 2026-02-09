@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Data
-@Document
+@Document(collection = "journal_entries")
 @NoArgsConstructor
 
 public class JournalEntry {
