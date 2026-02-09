@@ -1,8 +1,6 @@
 package com.ChirayuTech.journalApp.service;
 
-import com.ChirayuTech.journalApp.entity.JournalEntry;
 import com.ChirayuTech.journalApp.entity.User;
-import com.ChirayuTech.journalApp.repository.JournalEntryRepo;
 import com.ChirayuTech.journalApp.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,7 @@ public class UserService {
 
     public User saveEntry(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Arrays.asList("USER"));
         return userRepository.save(user);
     }
 
@@ -49,6 +48,10 @@ public class UserService {
 
     public User findByUserName(String username){
         return userRepository.findByUsername(username);
+    }
+
+    public void deleteByUsername(String username){
+        userRepository.deleteByUsername(username);
     }
 
 }

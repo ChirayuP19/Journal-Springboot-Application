@@ -6,6 +6,9 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,14 +31,14 @@ public class UserController {
         }
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<User>> getAllUsers(){
-        List<User> users = userService.getAll();
-        if(users !=null && !users.isEmpty()){
-            return new ResponseEntity<>(users,HttpStatus.OK);
-        }else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+//    @GetMapping("") Only can Access By Admin.
+//    public ResponseEntity<List<User>> getAllUsers(){
+//        List<User> users = userService.getAll();
+//        if(users !=null && !users.isEmpty()){
+//            return new ResponseEntity<>(users,HttpStatus.OK);
+//        }else
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<User> getUserById(@PathVariable ObjectId id){
@@ -43,22 +46,27 @@ public class UserController {
         return user.map(user1 -> new ResponseEntity<>(user1, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-//    @DeleteMapping("/id/{id}")
-//    public ResponseEntity<?> deleteById(@PathVariable ObjectId id){
-//        userService.deleteById(id);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
 
-    @PutMapping("/id/{username}")
-    public ResponseEntity<?> updateUserById(@RequestBody User user, @PathVariable String username){
-        User userName = userService.findByUserName(username);
-        if(userName!=null){
-            userName.setUsername(user.getUsername());
-            userName.setPassword(user.getPassword());
-            User entry = userService.saveEntry(userName);
-            return new ResponseEntity<>(entry,HttpStatus.OK);
+    @PutMapping("")
+    public ResponseEntity<?> updateUserById(@RequestBody User user){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        User userName = userService.findByUserName(name);
+        userName.setUsername(user.getUsername());
+        userName.setPassword(user.getPassword());
+        userService.saveEntry(userName);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("")
+    public ResponseEntity<?> deleteUserByUsername(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        User byUserName = userService.findByUserName(name);
+        if(byUserName!=null){
+            userService.deleteByUsername(name);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
