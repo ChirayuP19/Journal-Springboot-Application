@@ -3,3 +3,9 @@ spring:
     name: journalApp
   profiles:
     active: dev
+
+logging:
+  level:
+    com:
+      ChirayuTech:
+        journalApp: debug
