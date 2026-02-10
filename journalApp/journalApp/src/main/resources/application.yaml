@@ -1,8 +1,5 @@
 spring:
   application:
     name: journalApp
-  data:
-    mongodb:
-#      uri: mongodb://chirayu:Chirayu@localhost:27018/testdb?authSource=admin
-      uri: ${MONGO_URL}
-      auto-index-creation: true
+  profiles:
+    active: dev
