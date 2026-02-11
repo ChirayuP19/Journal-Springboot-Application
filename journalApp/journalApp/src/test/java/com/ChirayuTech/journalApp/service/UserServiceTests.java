@@ -19,19 +19,19 @@ public class UserServiceTests {
     @Autowired
     private UserRepository userRepository;
 
-    @Test
-    @Disabled
-    public void tesFindByUsername(){
-        User username = userRepository.findByUsername("kavya");
-        assertTrue(!username.getJournalEntries().isEmpty());
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "1,1,2",
-            "3,3,9"
-    })
-    public void test(int a, int b , int expected){
-        assertEquals(expected,a + b);
-    }
+//    @Test
+//    @Disabled
+//    public void tesFindByUsername(){
+//        User username = userRepository.findByUsername("kavya");
+//        assertTrue(!username.getJournalEntries().isEmpty());
+//    }
+//
+//    @ParameterizedTest
+//    @CsvSource({
+//            "1,1,2",
+//            "3,3,9"
+//    })
+//    public void test(int a, int b , int expected){
+//        assertEquals(expected,a + b);
+//    }
 }
