@@ -33,7 +33,7 @@ public class UserScheduler {
 //    @Value("${TO}")
 //    private String to;
 
-//    @Scheduled(cron = "0 0 9 * * SUN")
+    @Scheduled(cron = "0 0 9 * * SUN")
     public void fetchUserAndSendSaMail(){
         List<User> users = userRepository.getUsersForSA();
         for(User user:users){
