@@ -6,3 +6,14 @@ spring:
 #      uri: mongodb://chirayu:Chirayu@localhost:27018/testdb?authSource=admin
       uri: ${MONGO_URL}
       auto-index-creation: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: abcderfg@gmail.com # give from sender email.
+    password: xxxx xxxx xxxx xxxx # google Security App password can work fine.
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
