@@ -1,6 +1,7 @@
 package com.ChirayuTech.journalApp.entity;
 
 
+import com.ChirayuTech.journalApp.emuns.Sentiment;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -24,4 +25,5 @@ public class JournalEntry {
     private String title;
     private String content;
     private LocalDateTime localDateTime=LocalDateTime.now();
+    private Sentiment sentiment;
 }
