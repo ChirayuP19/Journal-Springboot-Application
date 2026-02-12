@@ -3,11 +3,13 @@ package com.ChirayuTech.journalApp.scheduler;
 import com.ChirayuTech.journalApp.emuns.Sentiment;
 import com.ChirayuTech.journalApp.entity.JournalEntry;
 import com.ChirayuTech.journalApp.entity.User;
+import com.ChirayuTech.journalApp.model.SentimentData;
 import com.ChirayuTech.journalApp.repository.UserRepositoryImpl;
 import com.ChirayuTech.journalApp.service.EmailService;
 import com.ChirayuTech.journalApp.service.SentimentAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,9 @@ public class UserScheduler {
 
     @Autowired
     private SentimentAnalysisService sentimentAnalysisService;
+
+    @Autowired
+    private KafkaTemplate<String, SentimentData> kafkaTemplate;
 
 //    @Value("${TO}")
 //    private String to;
@@ -61,7 +66,8 @@ public class UserScheduler {
                     }
                 }
                 if(mostFrequentSentiment !=null){
-                    emailService.sendEmail("sonu010675@gmail.com","Sentiment for last 7 days ",mostFrequentSentiment.toString());
+                    SentimentData sentimentData=SentimentData.builder().email(user.getEmail()).sentiment("Sentiment for last for last 7 days"+mostFrequentSentiment).build();
+                    kafkaTemplate.send("weekly-sentiments",sentimentData.getEmail(),sentimentData);
                 }
         }
     }
