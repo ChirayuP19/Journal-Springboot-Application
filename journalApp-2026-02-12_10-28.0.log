@@ -1,0 +1,1 @@
+10:28:20:679 [http-nio-8080-exec-6] ERROR c.C.journalApp.filter.JwtFilter - JWT invalid: io.jsonwebtoken.MalformedJwtException: Compact JWT strings may not contain whitespace.
