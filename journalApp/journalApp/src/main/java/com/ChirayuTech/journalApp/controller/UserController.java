@@ -2,6 +2,7 @@ package com.ChirayuTech.journalApp.controller;
 
 import com.ChirayuTech.journalApp.entity.User;
 import com.ChirayuTech.journalApp.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
+@Tag(name = "User API's",description = "Read, Update, Delete")
 public class UserController {
 
     @Autowired

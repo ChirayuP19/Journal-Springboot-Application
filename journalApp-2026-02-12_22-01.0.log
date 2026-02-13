@@ -1,2 +1,0 @@
-22:01:19:235 [http-nio-8080-exec-6] ERROR c.C.journalApp.filter.JwtFilter - JWT invalid: io.jsonwebtoken.ExpiredJwtException: JWT expired 30234 milliseconds ago at 2026-02-13T03:00:49.000Z. Current time: 2026-02-13T03:01:19.234Z. Allowed clock skew: 0 milliseconds.
-22:01:39:519 [http-nio-8080-exec-4] ERROR c.C.journalApp.filter.JwtFilter - JWT invalid: io.jsonwebtoken.ExpiredJwtException: JWT expired 50519 milliseconds ago at 2026-02-13T03:00:49.000Z. Current time: 2026-02-13T03:01:39.519Z. Allowed clock skew: 0 milliseconds.

@@ -4,6 +4,7 @@ import com.ChirayuTech.journalApp.entity.JournalEntry;
 import com.ChirayuTech.journalApp.entity.User;
 import com.ChirayuTech.journalApp.service.JournalEntryService;
 import com.ChirayuTech.journalApp.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/journal")
 @RequiredArgsConstructor
+@Tag(name = "Journal API's",description = "description = Create, GetAll, GetByID & UpdateByID")
 public class JournalEntryController {
 
     @Autowired
