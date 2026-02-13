@@ -1,1 +1,1 @@
-10:38:33:232 [http-nio-8080-exec-4] ERROR c.C.journalApp.filter.JwtFilter - JWT invalid: io.jsonwebtoken.MalformedJwtException: Compact JWT strings may not contain whitespace.
+22:09:13:462 [http-nio-8080-exec-3] ERROR c.C.journalApp.filter.JwtFilter - JWT invalid: io.jsonwebtoken.ExpiredJwtException: JWT expired 333461 milliseconds ago at 2026-02-13T03:03:40.000Z. Current time: 2026-02-13T03:09:13.461Z. Allowed clock skew: 0 milliseconds.
